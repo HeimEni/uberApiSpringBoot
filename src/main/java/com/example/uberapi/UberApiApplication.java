@@ -27,27 +27,54 @@ public class UberApiApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Client cLient = new Client();
-        cLient.setPhoneNumber("0626485978");
+        cLient.setPhoneNumber("06458948");
+        cLient.setName("Jeanne d'Arc");
         clientService.insertClient(cLient);
+
+        Client cLient2 = new Client();
+        cLient2.setPhoneNumber("06597846");
+        cLient2.setName("Louis XIV");
+        clientService.insertClient(cLient2);
 
 
 
 
         CarModel carModel = new CarModel();
         carModel.setBrand("BMW");
-        carModel.setModel("Galaxy");
+        carModel.setModel("M5");
         carModelService.insertCarModel(carModel);
 
+        CarModel carModel2 = new CarModel();
+        carModel2.setBrand("Renault");
+        carModel2.setModel("Clio");
+        carModelService.insertCarModel(carModel2);
+
+        CarModel carModel3 = new CarModel();
+        carModel3.setBrand("Mercedes");
+        carModel3.setModel("Classe A");
+        carModelService.insertCarModel(carModel3);
+
         Driver driver = new Driver();
-        driver.setName("Albert le taxi");
-        driver.setLicenseNumber("APAIUGHOIH");
+        driver.setName("Albert Jesus");
+        driver.setLicenseNumber("LicenseNumber#1");
         driverService.insertDriver(driver);
+
+        Driver driver2 = new Driver();
+        driver2.setName("Jean le feutre");
+        driver2.setLicenseNumber("LicenseNumber#1");
+        driverService.insertDriver(driver2);
 
         Taxi taxi = new Taxi();
         taxi.setCarModel(carModel);
         taxi.setDriver(driver);
         taxi.setTotalKm(12006);
         taxiService.insertTaxi(taxi);
+
+        Taxi taxi2 = new Taxi();
+        taxi2.setCarModel(carModel2);
+        taxi2.setDriver(driver2);
+        taxi2.setTotalKm(11056);
+        taxiService.insertTaxi(taxi2);
 
         Ride ride = new Ride();
         ride.setClient(cLient);
@@ -58,6 +85,16 @@ public class UberApiApplication implements CommandLineRunner {
         ride.setLongEnd(0F);
         ride.setLongStart(0F);
         rideService.insertRide(ride);
+
+        Ride ride2 = new Ride();
+        ride2.setClient(cLient);
+        ride2.setKm(5);
+        ride2.setTaxi(taxi2);
+        ride2.setLatStart(0F);
+        ride2.setLatEnd(0F);
+        ride2.setLongEnd(0F);
+        ride2.setLongStart(0F);
+        rideService.insertRide(ride2);
 
 
     }

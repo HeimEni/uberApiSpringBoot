@@ -25,6 +25,10 @@ public class CarModelController {
     public List<CarModel> getAllCarModels() {
         return carModelService.getAllCarModels();
     }
+    @GetMapping("/get")
+    public CarModel getCarModelById(@RequestParam Long id) {
+        return carModelService.findById(id);
+    }
     @PostMapping("/new")
     public ResponseEntity<CarModel> createCarModel(@RequestBody CarModelDTO carModelDTO) {
         try {
@@ -34,6 +38,22 @@ public class CarModelController {
             carModelService.insertCarModel(carModel);
             System.out.println(carModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping("/update")
+    public ResponseEntity<CarModel> update(@RequestBody CarModelDTO carModelDTO) {
+        System.out.println(carModelDTO);
+        try {
+            if(carModelService.findById(carModelDTO.getId()) != null) {
+                CarModel carModel =  carModelService.findById(carModelDTO.getId());
+                carModel.setModel(carModelDTO.getModel());
+                carModel.setBrand(carModelDTO.getMarque());
+                carModelService.insertCarModel(carModel);
+            }
+
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -21,13 +21,14 @@ VALUES (2, 'BMW', 'M5'),
 CREATE TABLE client
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) DEFAULT NULL,
     phone_number VARCHAR(255) DEFAULT NULL
 );
 
 -- Déchargement des données de la table `client`
-INSERT INTO client (id, phone_number)
-VALUES (1, '0659487898'),
-       (2, '0659487898');
+INSERT INTO client (id,name, phone_number)
+VALUES (1,'clientName#1', '0659487898'),
+       (2,'clientName#2', '0659487898');
 
 -- --------------------------------------------------------
 

@@ -35,7 +35,6 @@ public class TaxiController {
     public ResponseEntity<Taxi> createDriver(@RequestBody TaxiDTO taxiDTO) {
         try {
             Taxi taxiI = new Taxi();
-            System.out.println(taxiDTO);
             taxiI.setTotalKm(taxiDTO.getTotalKm());
             taxiI.setCarModel(carModelService.findById(taxiDTO.getCarModelId()));
             taxiI.setDriver(driverService.findById(taxiDTO.getDriverId()));
